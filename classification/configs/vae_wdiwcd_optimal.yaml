@@ -1,0 +1,26 @@
+
+# VAE + WDIWCD  (best-performing model; Table 8 in paper)
+model: VAE_WDIWCD
+dataset: mnist
+seed: 42
+n_runs: 10              # paper reports 10-run average for this model
+
+hyperparameters:
+  # Loss-combination weights (Equation 28)
+  a: 0.80               # weight of WDIWCD terms
+  b: 0.48               # KLD vs reconstruction within VAE terms
+  c: 0.87               # whole-data vs per-class within WDIWCD terms
+  # Architecture
+  latent_dim: 16
+  hidden_dim: 500
+  n_heads: 1
+  hist_bins: 32
+  n_classes: 10
+  # Optimisation
+  learning_rate: 0.001
+  batch_size: 64
+  n_epochs: 100
+  ctrl_point: 10        # number of classes used in per-class loss
+
+evaluation:
+  knn_k: 50

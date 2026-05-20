@@ -1,0 +1,19 @@
+
+# WDDWCC — Whole-Data Decorrelation Within-Class Correlation
+# Optimal hyperparameters selected from grid search (see finetuning/ subproject)
+model: WDDWCC
+dataset: mnist          # or: gender_face
+seed: 42
+n_runs: 5               # number of independent evaluation runs
+
+hyperparameters:
+  learning_rate: 0.01
+  batch_size: 128
+  max_iter: 1000
+  lambda: 0.5           # per-class vs. whole-data balance
+  n_components: 16
+  per_class_weight: 0.5
+
+evaluation:
+  knn_k: 50
+  n_hist_bins: 64       # for entropy-score computation

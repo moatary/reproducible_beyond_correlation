@@ -1,0 +1,47 @@
+
+name: Smoke Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Download data
+        run: python utils/download_data.py
+      - name: Smoke test — WDIWCD (5 iterations)
+        run: >
+          python -c "
+          import torch, numpy as np;
+          from utils.seed import set_seed; set_seed(42);
+          from utils.data_utils import load_mnist, make_loaders;
+          from classification.models.wdiwcd import WDIWCD;
+          tr, te = load_mnist(train_size=500, test_size=100);
+          m = WDIWCD(784, n_components=8, hist_bins=16, n_classes=10);
+          opt = torch.optim.Adam(m.parameters(), lr=0.01);
+          loader, _ = make_loaders(tr, te, batch_size=64);
+          for _ in range(5):
+            for x, y in loader:
+              opt.zero_grad(); l = m.compute_loss(x, y);
+              if not torch.isnan(l): l.backward(); opt.step();
+          print('OK')
+          "
+      - name: Smoke test — VAE
+        run: >
+          python -c "
+          import torch;
+          from utils.seed import set_seed; set_seed(42);
+          from classification.models.vae import VAE, vae_loss;
+          m = VAE(784, 256, 16);
+          x = torch.randn(32, 784);
+          recon, mu, lv, z = m(x);
+          loss, _, _ = vae_loss(recon.float(), x, mu, lv);
+          loss.backward(); print('VAE OK')
+          "
