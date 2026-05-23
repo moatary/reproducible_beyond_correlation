@@ -10,7 +10,7 @@ Official reproducibility code for:
 > **Beyond Correlation: Learning Supervised, Sample-Distinct, and
 > Eigenimage-Interpretable Representation**  
 > Mojtaba Moattari · Independent Researcher  
-> *arXiv preprint arXiv:2501.XXXXX (2025)*
+> *arXiv preprint (2026)*
 
 ## Quick links
 
