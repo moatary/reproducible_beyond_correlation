@@ -1,7 +1,7 @@
 
 # Beyond Correlation: Reproducibility Repository
 
-[![arXiv](https://img.shields.io/badge/arXiv-2501.XXXXX-red)](https://arxiv.org/abs/2501.XXXXX)
+[![arXiv](https://img.shields.io/badge/arXiv-2507.21136-red)](https://arxiv.org/abs/2507.21136)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://python.org)
 
@@ -80,13 +80,13 @@ python finetuning/plot_sensitivity.py
 ## Citation
 
 ```bibtex
-@article{moattari2025beyond,
+@article{moattari2026beyond,
   title   = {Beyond Correlation: Learning Supervised, Sample-Distinct, and
              Eigenimage-Interpretable Representation},
   author  = {Moattari, Mojtaba},
-  journal = {arXiv preprint arXiv:2501.XXXXX},
+  journal = {arXiv preprint arXiv:2507.21136},
   year    = {2025},
-  url     = {https://arxiv.org/abs/2501.XXXXX}
+  url     = {https://arxiv.org/abs/2507.21136}
 }
 ```
 
